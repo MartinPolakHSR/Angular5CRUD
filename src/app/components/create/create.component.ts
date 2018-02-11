@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { CoinService } from '../../coin.service';
+import { ItemService } from '../../item.service';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 
 @Component({
@@ -10,19 +10,19 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 })
 export class CreateComponent implements OnInit {
 
-  title = 'Add Coin';
+  title = 'Add Item';
   angForm: FormGroup;
-  constructor(private coinservice: CoinService, private fb: FormBuilder, private router: Router) {
+  constructor(private itemservice: ItemService, private fb: FormBuilder, private router: Router) {
     this.createForm();
    }
   createForm() {
     this.angForm = this.fb.group({
       name: ['', Validators.required ],
-      price: ['', Validators.required ]
+      description: ['', Validators.required ]
    });
   }
-  addCoin(name, price) {
-      this.coinservice.addCoin(name, price);
+  addItem(name, description) {
+      this.itemservice.addItem(name, description);
       this.router.navigate(['index']);
   }
   ngOnInit() {

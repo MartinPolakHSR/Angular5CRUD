@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CoinService } from './../../coin.service';
+import { ItemService } from '../../item.service';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 
 @Component({
@@ -10,31 +10,31 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 })
 export class EditComponent implements OnInit {
 
-  coin: any;
+  item: any;
   angForm: FormGroup;
-  title = 'Edit Coin';
-  constructor(private route: ActivatedRoute, private router: Router, private service: CoinService, private fb: FormBuilder) {
+  title = 'Edit Item';
+  constructor(private route: ActivatedRoute, private router: Router, private service: ItemService, private fb: FormBuilder) {
     this.createForm();
    }
 
   createForm() {
     this.angForm = this.fb.group({
       name: ['', Validators.required ],
-      price: ['', Validators.required ]
+      description: ['', Validators.required ]
    });
   }
 
-  updateCoin(name, price) {
+  updateItem(name, description) {
     this.route.params.subscribe(params => {
-    this.service.updateCoin(name, price, params['id']);
+    this.service.updateItem(name, description, params['id']);
     this.router.navigate(['index']);
   });
 }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.coin = this.service.editCoin(params['id']).subscribe(res => {
-        this.coin = res;
+      this.item = this.service.editItem(params['id']).subscribe(res => {
+        this.item = res;
       });
     });
   }

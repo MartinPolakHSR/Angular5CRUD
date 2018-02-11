@@ -6,7 +6,7 @@ const express = require('express'),
       cors = require('cors'),
       mongoose = require('mongoose'),
       config = require('./config/DB'),
-      coinRoutes = require('./expressRoutes/coinRoutes');
+      itemRoutes = require('./expressRoutes/itemRoutes');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DB).then(
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 const port = process.env.PORT || 4000;
 
-app.use('/coins', coinRoutes);
+app.use('/items', itemRoutes);
 
 const server = app.listen(port, function(){
   console.log('Listening on port ' + port);

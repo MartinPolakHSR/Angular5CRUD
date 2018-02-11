@@ -1,18 +1,18 @@
 <table class="table table-hover">
   <thead>
   <tr>
-      <td>Coin Name</td>
-      <td>Coin Price</td>
-      <td colspan="2">Actions</td>
+      <td>Bezeichnung</td>
+      <td>Beschreibung</td>
+      <td colspan="2">Aktionen</td>
   </tr>
   </thead>
 
   <tbody>
-      <tr *ngFor="let coin of coins">
-          <td>{{ coin.name }}</td>
-          <td>{{ coin.price }}</td>
-          <td><a [routerLink]="['/edit', coin._id]" class="btn btn-primary">Edit</a></td>
-          <td><button (click)="deleteCoin(coin._id)"  class="btn btn-danger">Delete</button></td>
+      <tr *ngFor="let item of items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td><a [routerLink]="['/edit', item._id]" class="btn btn-primary">bearbeiten</a></td>
+          <td><button (click)="deleteItem(item._id)"  class="btn btn-danger">löschen</button></td>
       </tr>
   </tbody>
 </table>

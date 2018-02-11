@@ -5,16 +5,16 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class CoinService {
+export class ItemService {
 
   result: any;
   constructor(private http: HttpClient) {}
 
-  addCoin(name, price) {
-    const uri = 'http://localhost:4000/coins/add';
+  addItem(name, description) {
+    const uri = 'http://localhost:4000/items/add';
     const obj = {
       name: name,
-      price: price
+      description: description
     };
     this
       .http
@@ -23,8 +23,8 @@ export class CoinService {
           console.log('Done'));
   }
 
-  getCoins() {
-    const uri = 'http://localhost:4000/coins';
+  getItems() {
+    const uri = 'http://localhost:4000/items';
     return this
             .http
             .get(uri)
@@ -33,8 +33,8 @@ export class CoinService {
             });
   }
 
-  editCoin(id) {
-    const uri = 'http://localhost:4000/coins/edit/' + id;
+  editItem(id) {
+    const uri = 'http://localhost:4000/items/edit/' + id;
     return this
             .http
             .get(uri)
@@ -43,12 +43,12 @@ export class CoinService {
             });
   }
 
-  updateCoin(name, price, id) {
-    const uri = 'http://localhost:4000/coins/update/' + id;
+  updateItem(name, description, id) {
+    const uri = 'http://localhost:4000/items/update/' + id;
 
     const obj = {
       name: name,
-      price: price
+      description: description
     };
     this
       .http
@@ -56,8 +56,8 @@ export class CoinService {
       .subscribe(res => console.log('Done'));
   }
 
-  deleteCoin(id) {
-    const uri = 'http://localhost:4000/coins/delete/' + id;
+  deleteItem(id) {
+    const uri = 'http://localhost:4000/items/delete/' + id;
 
         return this
             .http
